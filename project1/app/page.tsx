@@ -1,50 +1,33 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { TmySchema } from "./validations";
+import { TapiResponseSchema } from "./validations";
 import { Show } from "./components/show";
+import { Search } from "./components/search";
+import { fetchData } from "./api";
+import { Suspense } from "react";
 
-export type Tdata = TmySchema | "checking";
+interface IsearchParamsProps {
+  searchParams: { [key: string]: string | undefined };
+}
 
-export default function Home() {
-  const [hsCode, setHsCode] = useState<string>();
-  const [data, setData] = useState<Tdata>();
+export default async function Home({ searchParams }: IsearchParamsProps) {
+  const { hsCode } = searchParams;
 
-  const baseUrl = "https://eximcode.sireto.dev/codes/lookup";
-
-  const handleFetch = () => {
-    setData("checking");
-    let headers = new Headers();
-    headers.set("Authorization", "Basic " + btoa(username + ":" + password));
-    const res = fetch(baseUrl + `?code=${hsCode}&document=hs_code`, {
-      method: "GET",
-      headers: headers,
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        setData((prev) => (prev = json));
-      })
-      .catch((error) => console.error(error));
-  };
+  let promise: TapiResponseSchema | undefined = undefined;
+  if (hsCode) {
+    promise = await fetchData(Number(hsCode));
+    console.log(promise);
+  }
 
   return (
     <div className="p-5">
-      <form onSubmit={handleFetch}>
-        <label htmlFor="search" className="sr-only">
-          Search
-        </label>
-        <Input
-          type="text"
-          placeholder="Search hs-code..."
-          onChange={(e) => setHsCode((prev) => (prev = e.target.value.trim()))}
-        />
-        <Button>Submit</Button>
-      </form>
+      <label htmlFor="search" className="sr-only">
+        Search hs-code
+      </label>
+      <Search placeholder="Search hs-code ..." />
 
       <section>
-        {data && hsCode ? <Show apiData={data} /> : "No data found"}
+        <Suspense fallback={<div>Loading...</div>}>
+          {promise ? <Show apiData={promise} /> : "No data found"}
+        </Suspense>
       </section>
     </div>
   );

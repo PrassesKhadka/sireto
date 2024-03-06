@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import {
   Accordion,
@@ -7,31 +5,27 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Tdata } from "../page";
+import { TapiResponseSchema } from "../validations";
 
 interface IshowProps {
-  apiData: Tdata;
+  apiData: TapiResponseSchema;
 }
 
 export function Show({ apiData }: IshowProps) {
   return (
     <div>
-      {apiData === "checking" ? (
-        "Loading..."
-      ) : (
-        <Accordion type="single" collapsible>
-          <AccordionItem value="item-1">
-            <AccordionTrigger>
-              {apiData.code} : {apiData.description}
-            </AccordionTrigger>
-            <AccordionContent>
-              {apiData.parents.map((value: string) => (
-                <p>{value}</p>
-              ))}
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      )}
+      <Accordion type="single" collapsible>
+        <AccordionItem value="item-1">
+          <AccordionTrigger>
+            {apiData.code} : {apiData.description}
+          </AccordionTrigger>
+          <AccordionContent>
+            {/* {apiData.parents.map((value: string) => (
+              <p>{value}</p>
+            ))} */}
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </div>
   );
 }
