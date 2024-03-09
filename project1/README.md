@@ -1,9 +1,9 @@
 ## Tech Stack
 
-- Next.js for SSR such that authentication key to fetch api will not be exposed client side
+- NextJS 14(app router) for SSR such that authentication key to fetch api will not be exposed client side
 - dabbled around environment variables and how they are handled in next.js
 - typescript for type safety
-- zod for run time validation
+- zod for run time validation (search input(can only be a number) and response api validated)
 - tailwind for styling
 - storybook for component testing
 - e2e using playwright
@@ -43,3 +43,14 @@ Go through it serially
   - [Mocking API](https://playwright.dev/docs/mock)
   - [Mock browser APIs](https://playwright.dev/docs/mock-browser-apis)
   - [Network - avoiding testing third party dependencies and guaranteeing the response needed](https://playwright.dev/docs/network)
+
+  ## Github Repos
+
+  Best ones in order
+
+  - [official plawright example github repo](https://github.com/microsoft/playwright/tree/main/examples)
+  - [playwright-template](https://github.com/abhaybharti/playwright-framework-template/tree/master/src/tests)
+  - [demo.playwright - MarcusFelling](https://github.com/MarcusFelling/demo.playwright)
+  - [testing example repo for cypress,playwright,jest...](https://github.com/testomatio) and [for playwright example](https://github.com/testomatio/examples/tree/master/playwright)
+  - [Material-UI using playwright for e2e](https://github.com/mui/material-ui/tree/master/test)
+  - [sample-examples](https://github.com/akshayp7/playwright-typescript-playwright-test/tree/main/tests)
