@@ -1,4 +1,4 @@
-import { TapiResponseSchema } from "../validations";
+import { TapiResponseSchema, apiResponseSchema } from "../validations";
 import NotFound from "./Not-Found";
 
 interface IcardProps {
@@ -6,13 +6,17 @@ interface IcardProps {
 }
 
 export function Card({ apiData }: IcardProps) {
-  return apiData ? (
+  // Validating the api response
+  if (!apiResponseSchema.safeParse(apiData).success) return <NotFound />;
+
+  // if the api response is valid then show the necessary data on the screen
+  return (
     <div className="w-full h-full bg-zinc-100 block max-w-sm p-6 rounded-xl shadow hover:bg-zinc-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        {apiData.code}
+        Code : {apiData.code}
       </h5>
       <p className="font-normal text-gray-700 dark:text-gray-400">
-        {apiData.description}
+        Description: {apiData.description}
       </p>
       <div className="mt-3">
         <h2 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
@@ -24,10 +28,6 @@ export function Card({ apiData }: IcardProps) {
           ))}
         </ul>
       </div>
-    </div>
-  ) : (
-    <div className="w-full h-full ">
-      <NotFound />
     </div>
   );
 }

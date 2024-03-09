@@ -3,7 +3,7 @@ import { TapiResponseSchema } from "../validations";
 
 const AUTH_USERNAME = process.env.AUTH_USERNAME;
 const AUTH_PASSWORD = process.env.AUTH_PASSWORD;
-const BASE_URL = "https://eximcode.sireto.dev/codes/lookup";
+export const BASE_URL = "https://eximcode.sireto.dev/codes/lookup";
 
 export async function getData(hsCode: string): Promise<TapiResponseSchema> {
   const headers = new Headers();

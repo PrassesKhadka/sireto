@@ -23,9 +23,9 @@ export default async function Home({
         <Search placeholder="Search hs-code ..." />
       </div>
 
-      <section className="h-[250px] w-full mx-2">
+      <section className="w-full mx-2">
         {hsCode ? (
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<div>Loading...</div>}>
             <Card apiData={data} />
           </Suspense>
         ) : null}

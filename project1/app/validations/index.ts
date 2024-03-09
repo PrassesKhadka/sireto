@@ -1,7 +1,10 @@
 import { z } from "zod";
 
 export const apiResponseSchema = z.object({
-  code: z.string().uuid(),
+  code: z
+    .string()
+    .min(1)
+    .regex(/^[0-9]*$/),
   description: z.string(),
   parents: z.array(z.string()),
 });
