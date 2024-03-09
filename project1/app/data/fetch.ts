@@ -1,3 +1,4 @@
+// Server Component -> SSR(Server Side Rendering)
 import { TapiResponseSchema } from "../validations";
 
 const AUTH_USERNAME = process.env.AUTH_USERNAME;

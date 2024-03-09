@@ -6,7 +6,10 @@ export const apiResponseSchema = z.object({
   parents: z.array(z.string()),
 });
 
-export const validInputSchema = z.number();
+export const hsCodeInputSchema = z
+  .string()
+  .min(1, { message: "Field is required" })
+  .regex(/^[0-9]*$/, { message: "Should only be a number" });
 
 export type TapiResponseSchema = z.infer<typeof apiResponseSchema>;
-export type TvalidInputSchema = z.infer<typeof validInputSchema>;
+export type ThsCodeInputSchema = z.infer<typeof hsCodeInputSchema>;

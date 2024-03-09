@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Tech Stack
 
-## Getting Started
+- Next.js for SSR such that authentication key to fetch api will not be exposed client side
+- dabbled around environment variables and how they are handled in next.js
+- typescript for type safety
+- zod for run time validation
+- tailwind for styling
+- storybook for component testing
+- e2e using playwright
 
-First, run the development server:
+## Storybook
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Tailwind classes not working in storybook ](https://dev.to/lico/nextjs-using-tailwind-with-storybook-5aie)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Playwright for e2e testing - Handy References
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Go through it serially
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [Playwright brief](https://ray.run/blog/mastering-playwright-test-automation-your-comprehensive-cheat-sheet#seeking-out-page-elements)
 
-## Learn More
+- [Playwright Best Practises](https://playwright.dev/docs/best-practices)
 
-To learn more about Next.js, take a look at the following resources:
+- [Playwright all use cases example github](https://github.com/MarcusFelling/demo.playwright/blob/main/basic/2-actions.spec.ts)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Testing -> Arrange(page.goTo),Act(locators) and Assert(expect)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Selecting and finding elements (act)
 
-## Deploy on Vercel
+  - [Locators](https://playwright.dev/docs/locators) and [filtering locators](https://playwright.dev/docs/locators#filtering-locators)
+  - [Other Locators](https://playwright.dev/docs/other-locators)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Test assertions](https://playwright.dev/docs/test-assertions)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Testing input elements
+
+  - [Github example](https://github.com/MarcusFelling/demo.playwright/blob/main/basic/2-actions.spec.ts)
+  - [Actions docs](https://playwright.dev/docs/input)
+
+- [Navigations](https://playwright.dev/docs/navigations)
+
+- Mocking API
+
+  - [Mocking API](https://playwright.dev/docs/mock)
+  - [Mock browser APIs](https://playwright.dev/docs/mock-browser-apis)
+  - [Network - avoiding testing third party dependencies and guaranteeing the response needed](https://playwright.dev/docs/network)

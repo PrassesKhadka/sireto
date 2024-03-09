@@ -1,38 +1,39 @@
-import { TapiResponseSchema } from "./validations";
-import { Search } from "./components/search";
+import { ThsCodeInputSchema } from "./validations";
+import { Search } from "./components/Search";
 import { getData } from "./data/fetch";
 import { Suspense } from "react";
-import { Card } from "./components/card";
+import { Card } from "./components/Card";
 
 interface IsearchParamsProps {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: { hsCode: ThsCodeInputSchema };
 }
 
-export default async function Home({ searchParams }: IsearchParamsProps) {
-  const { hsCode } = searchParams;
-
-  let data: TapiResponseSchema | null = null;
-
-  if (hsCode) {
-    data = await getData(hsCode);
-  }
+export default async function Home({
+  searchParams: { hsCode },
+}: IsearchParamsProps) {
+  // Wait for the data to fetch
+  const data = await getData(hsCode);
 
   return (
-    <div className="w-[400px] h-[400px] p-5 flex flex-col gap-8 justify-center items-center ">
-      <div className="w-[90%]">
+    <div className="w-[300px] md:w-[400px] h-[400px] flex flex-col p-5 gap-3 items-center ">
+      <div className="w-full ">
         <label htmlFor="search" className="sr-only">
           Search hs-code
         </label>
         <Search placeholder="Search hs-code ..." />
       </div>
 
-      <section className="h-[265px] w-[300px] mx-2">
+      <section className="h-[250px] w-full mx-2">
         {hsCode ? (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loading />}>
             <Card apiData={data} />
           </Suspense>
         ) : null}
       </section>
     </div>
   );
+}
+
+function Loading() {
+  return <h2>Loading...</h2>;
 }
