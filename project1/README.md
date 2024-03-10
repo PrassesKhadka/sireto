@@ -38,18 +38,20 @@ Go through it serially
 
 - [Navigations](https://playwright.dev/docs/navigations)
 
-- Mocking API
+- API
 
+  - [API Testing playwright official doc](https://playwright.dev/docs/api-testing) and [Blog post link](https://anandhik.medium.com/api-testing-in-playwright-a4d031ba427c)
   - [Mocking API](https://playwright.dev/docs/mock)
   - [Mock browser APIs](https://playwright.dev/docs/mock-browser-apis)
   - [Network - avoiding testing third party dependencies and guaranteeing the response needed](https://playwright.dev/docs/network)
 
-  ## Github Repos
+  ### Github Repos
 
   Best ones in order
 
   - [official plawright example github repo](https://github.com/microsoft/playwright/tree/main/examples)
   - [playwright-template](https://github.com/abhaybharti/playwright-framework-template/tree/master/src/tests)
+  - [How to write tests](https://github.com/LambdaTest/playwright-sample/blob/main/playwright-test-ts/tests/download.spec.ts)
   - [demo.playwright - MarcusFelling](https://github.com/MarcusFelling/demo.playwright)
   - [testing example repo for cypress,playwright,jest...](https://github.com/testomatio) and [for playwright example](https://github.com/testomatio/examples/tree/master/playwright)
   - [Material-UI using playwright for e2e](https://github.com/mui/material-ui/tree/master/test)

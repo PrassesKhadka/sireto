@@ -1,13 +1,25 @@
 import { TapiResponseSchema, apiResponseSchema } from "../validations";
-import NotFound from "./Not-Found";
+import Image from "next/image";
 
 interface IcardProps {
   apiData: TapiResponseSchema;
 }
 
 export function Card({ apiData }: IcardProps) {
-  // Validating the api response
-  if (!apiResponseSchema.safeParse(apiData).success) return <NotFound />;
+  // Validating the api response -> if the api response is invalid
+  if (!apiResponseSchema.safeParse(apiData).success)
+    return (
+      <div className="justify-center items-center bg-zinc-100 block max-w-sm p-6 rounded-xl shadow hover:bg-zinc-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <div className="flex justify-center items-center">
+          <Image
+            src="/images/data-not-found.jpg"
+            width={250}
+            height={250}
+            alt="data-not-found"
+          />
+        </div>
+      </div>
+    );
 
   // if the api response is valid then show the necessary data on the screen
   return (

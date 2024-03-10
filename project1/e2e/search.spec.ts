@@ -6,23 +6,65 @@ test.describe("Testing search input", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("http://localhost:3000/");
   });
+  test.afterEach(async ({ page }) => {
+    await page.close();
+  });
 
   test("Entering Text Into Input Field", async ({ page }) => {
     // Locating elements
-    const inputFieldLocator = await page.getByPlaceholder("Search hs-code");
-    const invalidInputErrorMessage = await page.locator(
-      "#invalidInputErrorMessage"
-    );
+    const hsCodeInput = page.getByPlaceholder("Search hs-code");
+    const invalidInputErrorMessage = page.locator("#invalidInputErrorMessage");
+    const displayCard = page.locator("#section");
+    const dataNotFoundImage = page.getByRole("img", { name: "data-not-found" });
 
-    // Assert
-    // entering string
-    await inputFieldLocator.fill("not a number");
-    await expect(page.locator("#invalidInputErrorMessage")).toBeVisible();
+    // search Inputs
+    const testInputs = {
+      validInputs: {
+        dataFound: ["01", "010129", "0101", "03"],
+        dataNotFound: ["12333", "010", "0101290", "4784125689228"],
+      },
+      invalidInputs: [
+        "gibberish input string",
+        "a string which is not permissible",
+      ],
+    };
 
-    // entering a valid number
-    await inputFieldLocator.fill("01");
+    // Assert:
+    // when no input given
+    await hsCodeInput.fill("");
     await expect(invalidInputErrorMessage).toBeHidden();
-    expect(page.locator("section").getByText("01"));
+    await expect(dataNotFoundImage).toBeHidden();
+    await expect(displayCard).toBeHidden();
+
+    // valid input: when data found
+    for (const input of testInputs.validInputs.dataFound) {
+      await hsCodeInput.fill(input);
+      await expect(displayCard).toContainText(input);
+      await expect(invalidInputErrorMessage).toBeHidden();
+      await expect(dataNotFoundImage).toBeHidden();
+    }
+
+    // valid input: when data not found
+    for (const input of testInputs.validInputs.dataNotFound) {
+      await hsCodeInput.fill(input);
+      await expect(invalidInputErrorMessage).toBeHidden();
+      await expect(displayCard).not.toContainText(input);
+      await expect(dataNotFoundImage).toBeVisible();
+    }
+
+    // invalid input
+    for (const input of testInputs.invalidInputs) {
+      await hsCodeInput.fill(input);
+      await expect(invalidInputErrorMessage).toHaveText(
+        "Should only be a number"
+      );
+    }
+
+    // when searching for data skeleton loading should appear
+    // for (const input of testInputs.validInputs.dataFound) {
+    //   await hsCodeInput.fill(input);
+    //   await expect(displayCard).toContainText("Loading");
+    // }
 
     // // mocking the api call before navigating
     // await page.route(BASE_URL, async (route) => {

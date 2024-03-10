@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDebounce } from "use-debounce";
 import { Input } from "@/components/ui/input";
-import { hsCodeInputSchema, ThsCodeInputSchema } from "../validations";
+import { hsCodeInputSchema } from "../validations";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 interface IsearchProps {
