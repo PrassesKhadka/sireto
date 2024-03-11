@@ -15,7 +15,7 @@ test.describe("Testing search input", () => {
     const hsCodeInput = page.getByPlaceholder("Search hs-code");
     const invalidInputErrorMessage = page.locator("#invalidInputErrorMessage");
     const displayCard = page.locator("#section");
-    const dataNotFoundImage = page.getByRole("img", { name: "data-not-found" });
+    const dataNotFoundImage = page.getByRole("img", { name: "data not found" });
 
     // search Inputs
     const testInputs = {
