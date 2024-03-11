@@ -1,12 +1,18 @@
+# Project 1: Fetch Data and Display
+
+This project was implemented to be hands on with Storybook for component testing and playwright for e2e testing.
+
 ## Tech Stack
 
 - NextJS 14(app router) for SSR such that authentication key to fetch api will not be exposed client side
 - dabbled around environment variables and how they are handled in next.js
 - typescript for type safety
-- zod for run time validation (search input(can only be a number) and response api validated)
+- zod for run time schema validation (search input(can only be a number) and response api validated)
 - tailwind for styling
 - storybook for component testing
 - e2e using playwright
+
+# REFERENCES:
 
 ## Storybook
 
@@ -18,9 +24,8 @@
 
 ## React Testing Library
 
-![alt text](/public//images//rtl-cheat-sheet.png)
+![alt text](./public//images//rtl-cheat-sheet.png)
 
-- 
 ## Playwright for e2e testing - Handy References
 
 Go through it serially
