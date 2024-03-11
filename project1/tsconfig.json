@@ -17,6 +17,8 @@
         "name": "next"
       }
     ],
+    // to resolve storybook and ts path error
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
     }

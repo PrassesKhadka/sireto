@@ -1,8 +1,9 @@
-import { ThsCodeInputSchema } from "./validations";
+import { ThsCodeInputSchema, apiResponseSchema } from "./validations";
 import { Search } from "./components/Search";
 import { getData } from "./data/fetch";
-import { Suspense } from "react";
+import { Error } from "./components/Error";
 import { Card } from "./components/Card";
+import DataNotFoundImage from "@/public/images/data-not-found.jpg";
 
 interface IsearchParamsProps {
   searchParams: { hsCode: ThsCodeInputSchema };
@@ -24,11 +25,11 @@ export default async function Home({
       </div>
 
       <section id="section" className="w-full mx-2">
-        {hsCode ? (
-          <Suspense fallback={<div>Loading...</div>}>
-            <Card apiData={data} />
-          </Suspense>
-        ) : null}
+        {!hsCode ? null : apiResponseSchema.safeParse(data).success ? (
+          <Card apiData={data} />
+        ) : (
+          <Error img_url={DataNotFoundImage} errorMessage="Data Not Found" />
+        )}
       </section>
     </div>
   );

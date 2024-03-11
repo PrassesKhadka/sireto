@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/react";
+// for tailwind to work
 import "../app/globals.css";
 
 const preview: Preview = {

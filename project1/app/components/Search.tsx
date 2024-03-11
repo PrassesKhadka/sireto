@@ -11,7 +11,7 @@ interface IsearchProps {
   placeholder: string;
 }
 
-export const Search = ({ placeholder }: IsearchProps) => {
+export function Search({ placeholder }: IsearchProps) {
   const [inputString, setInputString] = useState<string>("");
   const [invalidInputMessage, setInvalidInputMessage] = useState<string>("");
   // debouncing the input string and validation will occur for this
@@ -44,7 +44,7 @@ export const Search = ({ placeholder }: IsearchProps) => {
         <Input
           placeholder={placeholder}
           onChange={(e) => setInputString(e.target.value.trim())}
-          className="rounded-[30px]"
+          className="rounded-[30px] bg-white"
         />
         <button className="absolute right-0 pr-2">
           <MagnifyingGlassIcon className="h-5 w-6" />
@@ -58,4 +58,4 @@ export const Search = ({ placeholder }: IsearchProps) => {
       </span>
     </div>
   );
-};
+}
