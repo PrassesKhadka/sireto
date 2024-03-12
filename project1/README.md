@@ -12,6 +12,29 @@ This project was implemented to be hands on with Storybook for component testing
 - storybook for component testing
 - e2e using playwright
 
+# To Run this Locally
+
+Clone this repository
+`git clone`
+Go to the project directory
+`cd sireto/project1`
+Install the necessary packages
+`npm install`
+The dev environment should open at localhost:3000
+To kill the process running at port 3000
+
+```
+lsof -i:3000
+kill -9 [PID]
+```
+
+Run it locally
+`npm run dev`
+To run storybook
+`npm run storybook`
+To run playwright
+`npx playwright test --debug`
+
 # REFERENCES:
 
 ## Storybook
