@@ -1,27 +1,15 @@
-import { Provider, atom, useAtom, useSetAtom } from "jotai";
+import React from "react";
+import { atom, useSetAtom } from "jotai";
 
 interface Todo {
   title: string;
   completed: boolean;
 }
+type Tfilter = "all" | "completed" | "incomplete";
 
-const TodoList = () => {
-  const setTodos = useSetAtom(todosAtom);
+const filterAtom = atom<Tfilter>("all");
+const todosAtom = atom<Todo[]>([]);
 
-  return (
-    <form onSubmit={add}>
-      <Filter />
-      <input name="inputTitle" placeholder="Type ..." />
-      <Filtered remove={remove} />
-    </form>
-  );
+const Home = () => {
+  return <div>Home</div>;
 };
-
-export default function Home() {
-  return (
-    <Provider>
-      <h1>Jotai Todo List</h1>
-      <TodoList />
-    </Provider>
-  );
-}
