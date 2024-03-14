@@ -19,7 +19,7 @@ import {
   RadioGroup,
 } from "@mui/material";
 
-interface Todo {
+export interface Todo {
   title: string;
   completed: boolean;
 }
@@ -43,12 +43,12 @@ const filteredAtom = atom<PrimitiveAtom<Todo>[]>((get) => {
 });
 
 // changes the state of filterAtom
-const Filter = () => {
+export const Filter = () => {
   const [filter, set] = useAtom<Tfilter>(filterAtom);
 
   return (
     <FormControl>
-      <FormLabel>Todo Status</FormLabel>
+      <FormLabel className="text-center">Todo Status</FormLabel>
       <RadioGroup
         row
         onChange={(e) => set(e.target.value as Tfilter)}
@@ -70,7 +70,7 @@ const Filter = () => {
   );
 };
 
-const TodoItem = ({
+export const TodoItem = ({
   atom,
   remove,
 }: {
@@ -84,22 +84,22 @@ const TodoItem = ({
   return (
     <>
       <Checkbox
-        id="title"
+        id={item.title}
         checked={item.completed}
         onChange={toggleCompleted}
       />
-      <label htmlFor="title">{item.title}</label>
+      <label htmlFor={item.title}>{item.title}</label>
       <Button onClick={() => remove(atom)}>Delete</Button>
       <br />
     </>
   );
 };
 
-const Filtered = (props: { remove: RemoveFn }) => {
+export const Filtered = (props: { remove: RemoveFn }) => {
   const filtered = useAtomValue(filteredAtom);
 
   return (
-    <div>
+    <div data-testid="todoList">
       {filtered.map((eachTodo, index) => (
         <TodoItem atom={eachTodo} {...props} key={index} />
       ))}
@@ -107,7 +107,7 @@ const Filtered = (props: { remove: RemoveFn }) => {
   );
 };
 
-const TodoList = () => {
+export const TodoList = () => {
   const set = useSetAtom(todosAtom);
   const add = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -121,9 +121,17 @@ const TodoList = () => {
     set((prev) => prev.filter((item) => item !== todo));
 
   return (
-    <form onSubmit={add} className="flex flex-col">
+    <form
+      onSubmit={add}
+      className="flex border-4 border-red-500 flex-col gap-5"
+    >
       <Filter />
-      <Input name="inputTitle" type="text" placeholder="Enter your todos" />
+      <Input
+        name="inputTitle"
+        type="text"
+        autoComplete="off"
+        placeholder="Enter your todos"
+      />
       <Button type="submit">Submit</Button>
       <Filtered remove={remove} />
     </form>
@@ -132,8 +140,8 @@ const TodoList = () => {
 
 export default function Home() {
   return (
-    <div>
+    <>
       <TodoList />
-    </div>
+    </>
   );
 }
