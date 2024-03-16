@@ -5,7 +5,6 @@ import { Card } from "../app/components/Card";
 const meta = {
   title: "Components/Card",
   component: Card,
-  tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta<typeof Card>;
 

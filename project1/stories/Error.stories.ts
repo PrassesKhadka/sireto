@@ -7,7 +7,6 @@ import DataNotFoundImage from "../public/images/data-not-found.jpg";
 const meta = {
   title: "Components/Error",
   component: Error,
-  tags: ["autodocs"],
   parameters: { layout: "centered" },
 } satisfies Meta<typeof Error>;
 
